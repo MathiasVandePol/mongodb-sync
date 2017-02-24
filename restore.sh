@@ -14,6 +14,8 @@ MONGODB_PASS=${MONGODB_RESTORE_PASS:-${MONGODB_RESTORE_ENV_MONGODB_PASS}}
 [[ ( -n "${MONGODB_RESTORE_DB}" ) ]] && USER_RESTORE_STR=" --db ${MONGODB_RESTORE_DB}"
 
 FILE_TO_RESTORE=${1}
+[[ ( -n "${MONGODB_BACKUP_DB}" ) ]] && FILE_TO_RESTORE="${1}/${MONGODB_BACKUP_DB}"
+
 
 [[ -z "${1}" ]] && FILE_TO_RESTORE=$(ls /backup -N1 | grep -iv ".tgz" | sort -r | head -n 1)
 
